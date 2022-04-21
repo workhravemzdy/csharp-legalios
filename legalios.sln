@@ -7,6 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Legalios", "legalios\Legali
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegaliosTests", "legaliosTest\LegaliosTests.csproj", "{6ED74D04-B90C-487D-A0D4-FA3909B4BD2C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F4C50C78-EC7E-4348-922F-9DF66DDE6A7F}"
+	ProjectSection(SolutionItems) = preProject
+		git_add_commit.sh = git_add_commit.sh
+		git_tag_push.sh = git_tag_push.sh
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
