@@ -66,10 +66,10 @@ namespace LegaliosTests.History
         private readonly IProviderFactory<IProviderSocial, IPropsSocial> _sutSocial;
         private readonly IProviderFactory<IProviderTaxing, IPropsTaxing> _sutTaxing;
 
-#if __MACOS__
-        public const string HISTORY_TEST_FOLDER = "../../../test_history";
-#else
+#if _NMACOS_
         public const string HISTORY_TEST_FOLDER = "..\\..\\..\\test_history";
+#else
+        public const string HISTORY_TEST_FOLDER = "../../../test_history";
 #endif
 
         public FactoriesHistoryTest() : base(HISTORY_TEST_FOLDER)

@@ -10,10 +10,10 @@ namespace LegaliosTest.Service
     [CollectionDefinition("TestEngine")]
     public class Service_Legalios_Example_BaseTest : LegaliosBaseTest
     {
-#if __MACOS__
-        public const string EXAMPLE_TEST_FOLDER = "../../../test_expected";
-#else
+#if _NMACOS_
         public const string EXAMPLE_TEST_FOLDER = "..\\..\\..\\test_expected";
+#else
+        public const string EXAMPLE_TEST_FOLDER = "../../../test_expected";
 #endif
 
         public Service_Legalios_Example_BaseTest()

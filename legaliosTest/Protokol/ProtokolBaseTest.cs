@@ -9,10 +9,10 @@ namespace LegaliosTest.Protokol
 {
     public class ProtokolBaseTest
     {
-#if __MACOS__
-        public const string PROTOKOL_TEST_FOLDER = "../../../test_values";
-#else
+#if _NMACOS_
         public const string PROTOKOL_TEST_FOLDER = "..\\..\\..\\test_values";
+#else
+        public const string PROTOKOL_TEST_FOLDER = "../../../test_values";
 #endif
 
         protected string TestFolder {get;}
