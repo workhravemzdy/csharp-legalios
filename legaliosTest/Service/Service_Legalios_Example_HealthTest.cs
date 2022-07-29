@@ -13,10 +13,7 @@ namespace LegaliosTest.Service
             try
             {
                 testResult.IsRight.Should().BeTrue();
-                testResult.Match(
-                    Left: ex => ex.Should().BeNull(),
-                    Right: r =>
-                    {
+                testResult.IfRight(r => {
                         r.Should().NotBeNull();
                         r.Should().BeAssignableTo<IBundleProps>();
                         r.PeriodProps.Year.Should().Be(resultYear);
