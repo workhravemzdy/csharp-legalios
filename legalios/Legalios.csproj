@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>HraveMzdy.Legalios</AssemblyName>
     <RootNamespace>HraveMzdy.Legalios</RootNamespace>
     <PackageId>HraveMzdy.Legalios</PackageId>
@@ -20,19 +20,21 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>hravemzdy__org_publish_key.snk</AssemblyOriginatorKeyFile>
-    <ReleaseVersion>0.22.13</ReleaseVersion>
+    <ReleaseVersion>0.22.20</ReleaseVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType></DebugType>
+    <OutputPath>bin\Release\net6.0</OutputPath>
+    <DefineConstants>__MACOS__;TRACE;RELEASE;NET;NET5_0;NETCOREAPP</DefineConstants>
     <WarningLevel>4</WarningLevel>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="ResultMonad" Version="1.0.1" />
+    <None Remove="LanguageExt.Core" />
   </ItemGroup>
-
   <ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
@@ -40,4 +42,7 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="LanguageExt.Core" Version="4.2.9" />
+  </ItemGroup>
 </Project>

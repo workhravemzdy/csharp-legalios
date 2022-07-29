@@ -1,21 +1,27 @@
 ﻿using FluentAssertions;
 using HraveMzdy.Legalios.Service.Errors;
 using HraveMzdy.Legalios.Service.Interfaces;
+using LanguageExt;
 
 namespace LegaliosTest.Service
 {
     public class Service_Legalios_Example_TaxingTest : Service_Legalios_Example_BaseTest
     {
-        protected void ShoulBeValidBundle(ResultMonad.Result<IBundleProps, IHistoryResultError> testResult, short resultYear, short resultMonth)
+        protected void ShoulBeValidBundle(Either<IHistoryResultError, IBundleProps> testResult, short resultYear, short resultMonth)
         {
             try
             {
-                testResult.IsSuccess.Should().BeTrue();
-                testResult.Value.Should().NotBeNull();
-                testResult.Value.Should().BeAssignableTo<IBundleProps>();
-                testResult.Value.PeriodProps.Year.Should().Be(resultYear);
-                testResult.Value.PeriodProps.Month.Should().Be(resultMonth);
-                testResult.Value.TaxingProps.Should().NotBeNull();
+                testResult.IsRight.Should().BeTrue();
+                testResult.Match(
+                    Left: ex => ex.Should().BeNull(),
+                    Right: r =>
+                    {
+                        r.Should().NotBeNull();
+                        r.Should().BeAssignableTo<IBundleProps>();
+                        r.PeriodProps.Year.Should().Be(resultYear);
+                        r.PeriodProps.Month.Should().Be(resultMonth);
+                        r.SocialProps.Should().NotBeNull();
+                    });
             }
             catch (Xunit.Sdk.XunitException e)
             {

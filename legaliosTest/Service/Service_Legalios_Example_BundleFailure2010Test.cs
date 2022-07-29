@@ -37,7 +37,7 @@ namespace LegaliosTest.Service
 
             var testResult = _sut.GetBundle(testPeriod);
 
-            testResult.IsFailure.Should().BeTrue();
+            testResult.IsLeft.Should().BeTrue();
         }
     }
 }

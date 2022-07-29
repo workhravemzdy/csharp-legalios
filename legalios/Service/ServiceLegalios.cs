@@ -3,7 +3,8 @@ using HraveMzdy.Legalios.Service.Errors;
 using HraveMzdy.Legalios.Factories;
 using HraveMzdy.Legalios.Interfaces;
 using HraveMzdy.Legalios.Service.Interfaces;
-using ResultMonad;
+using LanguageExt;
+using static LanguageExt.Prelude;
 
 namespace HraveMzdy.Legalios.Service
 {
@@ -16,22 +17,22 @@ namespace HraveMzdy.Legalios.Service
 
         private IBundleBuilder Builder { get; }
 
-        public Result<IBundleProps, IHistoryResultError> GetBundle(IPeriod period)
+        public Either<IHistoryResultError, IBundleProps> GetBundle(IPeriod period)
         {
             var resultBundle = Builder.GetBundle(period);
             if (resultBundle == null)
             {
-                return Result.Fail<IBundleProps, IHistoryResultError>(HistoryResultError.CreateBundleNoneError());
+                return HistoryResultError.CreateBundleNoneError();
             }
             if (resultBundle.PeriodProps.Code == 0)
             {
-                return Result.Fail<IBundleProps, IHistoryResultError>(HistoryResultError.CreateBundleEmptyError());
+                return HistoryResultError.CreateBundleEmptyError();
             }
             if (resultBundle.PeriodProps.Code < period.Code)
             {
-                return Result.Fail<IBundleProps, IHistoryResultError>(HistoryResultError.CreateBundleInvalidError());
+                return HistoryResultError.CreateBundleInvalidError();
             }
-            return Result.Ok<IBundleProps, IHistoryResultError>(resultBundle);
+            return Right(resultBundle);
         }
     }
 }

@@ -165,7 +165,7 @@ namespace HraveMzdy.Legalios.Service.Types
                 int res = 0;
                 if (idx >= idxFrom && idx <= idxStop)
                 {
-                    res = (z.First + z.Second);
+                    res = (z.Item1 + z.Item2    );
                 }
                 return res;
             }).ToArray();
@@ -216,7 +216,7 @@ namespace HraveMzdy.Legalios.Service.Types
                 int res = 0;
                 if (idx >= idxFrom && idx <= idxStop)
                 {
-                    res = Math.Max(0, z.First - z.Second);
+                    res = Math.Max(0, z.Item1 - z.Item2);
                 }
                 return res;
             }).ToArray();

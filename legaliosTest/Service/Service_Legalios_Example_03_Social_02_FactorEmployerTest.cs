@@ -221,7 +221,9 @@ namespace LegaliosTest.Service
 
             ShoulBeValidBundle(testResult, resultYear, resultMonth);
 
-            testResult.Value.SocialProps.FactorEmployer.Should().Be(resultValue, "Because Period: {0} - {1}", testTitle, testName);
+            testResult.Match(
+                Left: ex => ex.Should().BeNull(),
+                Right: r => r.SocialProps.FactorEmployer.Should().Be(resultValue, "Because Period: {0} - {1}", testTitle, testName));
         }
     }
 }

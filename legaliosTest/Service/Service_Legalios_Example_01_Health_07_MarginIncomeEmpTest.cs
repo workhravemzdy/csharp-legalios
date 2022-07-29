@@ -220,7 +220,9 @@ namespace LegaliosTest.Service
 
             ShoulBeValidBundle(testResult, resultYear, resultMonth);
 
-            testResult.Value.HealthProps.MarginIncomeEmp.Should().Be(resultValue, "Because Period: {0} - {1}", testTitle, testName);
+            testResult.Match(
+                Left: ex => ex.Should().BeNull(),
+                Right: r => r.HealthProps.MarginIncomeEmp.Should().Be(resultValue, "Because Period: {0} - {1}", testTitle, testName));
         }
     }
 }
