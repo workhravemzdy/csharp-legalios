@@ -5,6 +5,8 @@ using System.Linq;
 using Xunit;
 using LegaliosTests;
 
+[assembly: CollectionBehavior(DisableTestParallelization = true)]
+
 namespace LegaliosTest.Service
 {
     [CollectionDefinition("TestEngine")]
